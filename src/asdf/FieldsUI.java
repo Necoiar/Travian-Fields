@@ -192,20 +192,15 @@ private static double ttgCrop(double level) { //ttg = time 'til gainz
         //production 
         double[] levelproduce = {5, 9, 15, 22, 33, 50, 70, 100, 145, 200, 280, 375, 495, 635, 800, 1000};
         //consumption
-        double consumption = 0;
+        double consumption = 1;
         if (level > 15) {
             consumption = 2;}
-        else if (level > 5) {
-            consumption = 1;}
+        else if (level < 6) {
+            consumption = 0;}
        
-        double ProductionGain;
-        if (1 == level){
-            ProductionGain = levelproduce[(int) level-1] - 2 - consumption;
-        }
-        else {
-            ProductionGain = levelproduce[(int) level-1] - levelproduce[(int) level-2] - consumption;
-        }
-        double ttg = levelcost[(int) level-1]/ProductionGain;
+        double ProductionGain = levelproduce[(int) level] - levelproduce[(int) level-1] - consumption;
+        
+        double ttg = levelcost[(int) level]/ProductionGain;
         return ttg;
     }
     private static double ttgWood(double level) { //ttg = time 'til gainz
@@ -217,16 +212,11 @@ private static double ttgCrop(double level) { //ttg = time 'til gainz
         double consumption = 2;
         if (level > 15) {
             consumption = 3;}
-        else if (1 < level && level < 6) {
+        else if (level < 6) {
             consumption = 1; }
-        double ProductionGain;
-        if (1 == level){
-            ProductionGain = levelproduce[(int) level-1] - 2 - consumption;
-        }
-        else {
-            ProductionGain = levelproduce[(int) level-1] - levelproduce[(int) level-2] - consumption;
-        }
-        double ttg = levelcost[(int) level-1]/ProductionGain;
+        
+        double ProductionGain = levelproduce[(int) level] - levelproduce[(int) level-1] - consumption;
+        double ttg = levelcost[(int) level]/ProductionGain;
         return ttg;
     }       
     private static double ttgClay(double level) {
@@ -239,18 +229,12 @@ private static double ttgCrop(double level) { //ttg = time 'til gainz
         if (level > 15) {
             consumption = 3;
         }
-        else if (1 < level && level < 6) {
+        else if (level < 6) {
             consumption = 1; 
         }
-        double ProductionGain;
-        if (1 == level){
-            ProductionGain = levelproduce[(int) level-1] - 2 - consumption;
-        }
-        else {
-            ProductionGain = levelproduce[(int) level-1] - levelproduce[(int) level-2] - consumption;
-        }
+        double ProductionGain = levelproduce[(int) level] - levelproduce[(int) level-1] - consumption;
         
-        double ttg = levelcost[(int) level-1]/ProductionGain;
+        double ttg = levelcost[(int) level]/ProductionGain;
         return ttg;
     }
     private static double ttgIron(double level) {
@@ -260,16 +244,11 @@ private static double ttgCrop(double level) { //ttg = time 'til gainz
         double[] levelproduce = {5, 9, 15, 22, 33, 50, 70, 100, 145, 200, 280, 375, 495, 635, 800, 1000};
         //consumption
         double consumption = 2;
-        if (level > 10 | level == 1) {
-            consumption = 3;}
+        if (level > 10) {
+            consumption = 3;
+        }        
+        double ProductionGain = levelproduce[(int) level] - levelproduce[(int) level-1] - consumption;
         
-        double ProductionGain;
-        if (1 == level){
-            ProductionGain = levelproduce[(int) level] - 2 - consumption;
-        }
-        else {
-            ProductionGain = levelproduce[(int) level] - levelproduce[(int) level-1] - consumption;
-        }
         double ttg = levelcost[(int) level]/ProductionGain;
         return ttg;
     }
